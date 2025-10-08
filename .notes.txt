@@ -1,0 +1,19 @@
+# DIFFERENCE
+
+• Blade Templating
+  - Lama: inheritance
+  - Baru: component
+
+
+
+*NEW KNOWLEDGE
+
+  # Controller
+    - Closure function membuat scope baru, sehingga perlu keyword use untuk "membawa" variabel dari luar
+    - Arrow function (fn) otomatis mewarisi scope dari function parent, jadi tidak perlu use
+
+
+  # Route Model Binding
+    - dengan extends Model pada Model maka secara otomatis Model yang kita buat terhubung dengan table yang ada di database
+    - route binding langsung menggunakan nama model:nama_kolom
+
