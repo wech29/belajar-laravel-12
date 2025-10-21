@@ -17,6 +17,10 @@
     - dengan extends Model pada Model maka secara otomatis Model yang kita buat terhubung dengan table yang ada di database
     - route binding langsung menggunakan nama model:nama_kolom
 
+  # N + 1
+    - ada 2 cara untuk menangani lazy loading : > pada setiap controller ditambahkan 1 1
+                                                > mengguanakan eager loading default pada model  (lebih simple, karena hanya menambahkan 1 baris)
+
 
 
 

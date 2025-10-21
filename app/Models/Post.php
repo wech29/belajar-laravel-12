@@ -12,7 +12,21 @@ class Post extends Model
     // jika ingin menggunakan fitur factory
     use HasFactory;
 
-    // sebelum extend Model  (karenna sudah ada di database jadi tidak perlu / akan menghasilkan error)
+    // agar bisa diisi secara massal
+    protected $fillable = [
+        'title',
+        'slug',
+        'author_id',
+        'category_id',
+        'body',
+    ];
+
+    // untuk eager loading secara otomatis setiap memanggil model Post
+    protected $with = ['author', 'category'];
+
+
+
+    // sebelum extend Model  (karena sudah ada di database jadi tidak perlu / akan menghasilkan error)
 
     // public static function all()     (error karena nama method all sudah ada di Model)
     // {

@@ -17,7 +17,7 @@
 
             <p class="my-3 font-light text-justify">{{ Str::limit($blog['body'], 250) }}</p>
             <div class="my-0 text-right">
-                <a href="/posts/{{ $blog['slug'] }}" class="font-medium text-blue-500 hover:underline">selengkapnya</a>
+                <a href="/posts/{{ $blog['slug'] }}" class="font-medium text-blue-500 hover:underline">more >></a>
             </div>
 
         </article>

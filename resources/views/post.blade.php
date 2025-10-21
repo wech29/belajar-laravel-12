@@ -10,7 +10,7 @@
             </span>
             <p class="my-3 font-light text-justify">{{ $blog['body'] }}</p>
 
-            <a href="/posts" class="font-medium text-blue-500 hover:underline">back to all post</a>
+            <a href="/posts" class="font-medium text-blue-500 hover:underline"><< back to all post</a>
         </article>
     </div>
 </x-layout>
