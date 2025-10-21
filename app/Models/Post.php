@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 
 class Post extends Model
 {
+    // jika ingin menggunakan fitur factory
+    use HasFactory;
 
     // sebelum extend Model  (karenna sudah ada di database jadi tidak perlu / akan menghasilkan error)
 
@@ -55,5 +59,8 @@ class Post extends Model
 
     // protected $table = 'blog_posts';  (solusi jika nama table tidak sesuai dengan nama plural dari nama model, maka perlu didefinisikan secara eksplisit)
 
-
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
 }
