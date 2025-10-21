@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,6 +26,7 @@ class PostFactory extends Factory
             'slug' => Str::slug($title),
             // 'author_id' => $this->faker->name(),                         ~> jika tidak menggunakan relasi
             'author_id' => User::factory(),
+            'category_id' => Category::factory(),
             'body' => $this->faker->paragraphs(4, true),
         ];
     }
@@ -44,6 +46,10 @@ class PostFactory extends Factory
 
     // $post = App\Models\Post::first();                            ~> mengambil post pertama
     // $post->author;                                               ~> mengambil author dari post pertama
+
+
+    // jika ingin memnambahkan 2 sekaligus
+    // App\Models\Post::factory(30)->recycle([Category::factory(3)->create(), User::factory(5)->create()])->create()
 
 
 

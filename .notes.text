@@ -20,5 +20,13 @@
 
 
 
+* terminal
+  - php artisan make:model Category -mf                     ~> untuk membuat model sekaligus migration dan factorynya
+
+
+  # untuk membersihkan cache
+  - composer dumpautoload
+  - php artisan optimize:clear
+
 
 *sisanya ada di masing-masing file (model, controller dll)
