@@ -15,18 +15,22 @@ class CategorySeeder extends Seeder
         Category::create([
             'name' => 'HTML CSS',
             'slug' => 'html-css',
+            'color' => 'bg-[#E34C26]',                  // ~> jika ingin custom color
         ]);
         Category::create([
             'name' => 'Javascript',
             'slug' => 'javascript',
+            'color' => 'bg-amber-400',
         ]);
         Category::create([
             'name' => 'Laravel',
             'slug' => 'laravel',
+            'color' => 'bg-red-400',
         ]);
         Category::create([
             'name' => 'React JS',
             'slug' => 'react-js',
+            'color' => 'bg-cyan-400',
         ]);
     }
 }
