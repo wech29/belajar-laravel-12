@@ -64,7 +64,7 @@
                 </article>
             @empty
                 <div class="col-span-3 text-center">
-                    <p class="text-gray-500 dark:text-gray-400 mb-4 font-semibold text-xl">No article found.</p>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 text-2xl">No article found.</p>
                     <a href="/posts" class="font-medium text-blue-500 hover:underline">back to all post</a>
                 </div>
             @endforelse
