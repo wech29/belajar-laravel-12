@@ -9,8 +9,9 @@ Route::get('/', function () {
 
 Route::get('/posts', function () {
 
-    // $posts = Post::all();                                                                                             ~> lazy loading
-    $posts = Post::with(['author', 'category'])->latest()->filter(request(['search','category', 'author']))->get();      // ~> eager loading
+    // $posts = Post::all();                                                                                                    ~> lazy loading
+    $posts = Post::with(['author', 'category'])->latest()
+    ->filter(request(['search','category', 'author']))->paginate(6)->withQueryString();      // ~> eager loading
     return view('posts', ['posts' => $posts]);
 });
 
