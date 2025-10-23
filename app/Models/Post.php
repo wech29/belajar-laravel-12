@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Arr;
 
 class Post extends Model
 {
@@ -24,8 +25,6 @@ class Post extends Model
 
     // untuk eager loading secara otomatis setiap memanggil model Post
     protected $with = ['author', 'category'];
-
-
 
     // sebelum extend Model  (karena sudah ada di database jadi tidak perlu / akan menghasilkan error)
 
@@ -69,7 +68,6 @@ class Post extends Model
     //     return Arr::first(self::all(), fn ($post) => $post['slug'] === $slug) ?? abort(404);
     // }
 
-
     // setelah extend Model
 
     // protected $table = 'blog_posts';  (solusi jika nama table tidak sesuai dengan nama plural dari nama model, maka perlu didefinisikan secara eksplisit)
@@ -82,5 +80,24 @@ class Post extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    #[Scope]
+    public function filter(Builder $query, array $filters): void
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('title', 'like', '%'.$search.'%');
+        });
+
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            // return $query->whereHas('category', function ($query) use ($category) {
+            //     $query->where('slug', $category);
+            // });
+            return $query->whereHas('category', fn (Builder $query) => $query->where('slug', $category));           // arrow fn version
+        });
+
+        $query->when($filters['author'] ?? false, function ($query, $author) {
+            return $query->whereHas('author', fn (Builder $query) => $query->where('username', $author));           // arrow fn version
+        });
     }
 }

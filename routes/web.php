@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,27 +9,13 @@ Route::get('/', function () {
 
 Route::get('/posts', function () {
 
-    // $posts = Post::all();                                                   ~> lazy loading
-    $posts = Post::with(['author', 'category'])->latest()->get();           // ~> eager loading
+    // $posts = Post::all();                                                                                             ~> lazy loading
+    $posts = Post::with(['author', 'category'])->latest()->filter(request(['search','category', 'author']))->get();      // ~> eager loading
     return view('posts', ['posts' => $posts]);
 });
 
-Route::get('/posts/{post:slug}', function (Post $post) {
-    return view('post', ['blog' => $post]);
-});
-
-Route::get('/posts/author/{user:username}', function (User $user) {
-
-    $posts = $user->posts()->with(['category', 'author'])->latest()->get();           // ~> eager loading
-    return view('posts', ['posts' => $posts, 'title' => count($posts).' article by '.$user->name]);
-});
-
-Route::get('/posts/category/{category:slug}', function (Category $category) {
-
-    return view('posts', [
-        'posts' => $category->posts,
-        'title' => count($category->posts).' article in the '.strtolower($category->name).' category',
-    ]);
+Route::get('/posts/{posts:slug}', function (Post $posts) {
+    return view('post', ['blog' => $posts]);
 });
 
 Route::get('/about', function () {
