@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
         Category::create([
             'name' => 'HTML CSS',
             'slug' => 'html-css',
-            'color' => 'bg-[#EC8368]',                  // ~> jika ingin custom color
+            'color' => 'bg-[#EC8368]',                               // ~> jika ingin custom color
         ]);
         Category::create([
             'name' => 'Javascript',
